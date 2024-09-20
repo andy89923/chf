@@ -29,6 +29,7 @@ const (
 	ConvergedChargingResUriPrefix    = "/nchf-convergedcharging/v3"
 	OfflineOnlyChargingResUriPrefix  = "/nchf-offlineonlycharging/v1"
 	SpendingLimitControlResUriPrefix = "/nchf-spendinglimitcontrol/v1"
+	ChfOamUriPrefix                  = "/oam"
 )
 
 type Config struct {

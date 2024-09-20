@@ -96,6 +96,10 @@ func newRouter(s *Server) *gin.Engine {
 		}
 	}
 
+	chfOamGroup := router.Group(factory.ChfOamUriPrefix)
+	chfOamRoutes := s.getOamRoutes()
+	applyRoutes(chfOamGroup, chfOamRoutes)
+
 	return router
 }
 
