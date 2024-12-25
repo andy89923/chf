@@ -2,7 +2,6 @@ package sbi
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -35,6 +34,5 @@ func (s *Server) ChfOamNfResourceGet(c *gin.Context) {
 		c.String(http.StatusInternalServerError, err.Error())
 		return
 	}
-	fmt.Println(nfResource)
 	c.JSON(http.StatusOK, *nfResource)
 }
