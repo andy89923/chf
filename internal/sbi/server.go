@@ -53,6 +53,10 @@ func NewServer(chf ServerChf, tlsKeyLogPath string) (*Server, error) {
 	})
 	applyRoutes(group, routes)
 
+	oamRoutes := s.getNwdafOamRoutes()
+	oamGroup := s.router.Group("/nwdaf-oam")
+	applyRoutes(oamGroup, oamRoutes)
+
 	cfg := s.Config()
 	bindAddr := cfg.GetSbiBindingAddr()
 	logger.SBILog.Infof("Binding addr: [%s]", bindAddr)
