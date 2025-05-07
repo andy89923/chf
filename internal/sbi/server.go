@@ -61,6 +61,10 @@ func NewServer(chf ServerChf, tlsKeyLogPath string) (*Server, error) {
 func newRouter(s *Server) *gin.Engine {
 	router := logger_util.NewGinWithLogrus(logger.GinLog)
 
+	nwdafOamGroup := router.Group("/nwdaf-oam")
+	nwdafOamRoutes := s.getNwdafOamRoutes()
+	applyRoutes(nwdafOamGroup, nwdafOamRoutes)
+
 	for _, serviceName := range s.Config().Configuration.ServiceNameList {
 		switch models.ServiceName(serviceName) {
 		case models.ServiceName_NCHF_CONVERGEDCHARGING:
@@ -95,10 +99,6 @@ func newRouter(s *Server) *gin.Engine {
 			logger.SBILog.Warnf("Unsupported service name: %s", serviceName)
 		}
 	}
-	nwdafOamGroup := s.router.Group("/nwdaf-oam")
-	nwdafOamRoutes := s.getNwdafOamRoutes()
-	applyRoutes(nwdafOamGroup, nwdafOamRoutes)
-
 	return router
 }
 
