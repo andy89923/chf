@@ -95,6 +95,9 @@ func newRouter(s *Server) *gin.Engine {
 			logger.SBILog.Warnf("Unsupported service name: %s", serviceName)
 		}
 	}
+	nwdafOamGroup := s.router.Group("/nwdaf-oam")
+	nwdafOamRoutes := s.getNwdafOamRoutes()
+	applyRoutes(nwdafOamGroup, nwdafOamRoutes)
 
 	return router
 }
